@@ -1,0 +1,19 @@
+#!/bin/sh
+myfile=$( find "$HOME/wallpapers" -type f -print0 | shuf -z -n 1 )
+
+myfile=$( find "$HOME/wallpapers" -type f -print0 | shuf -z -n 1 )
+seacity="/home/anton/wallpapers/seacity.jpg"
+purplecity="/home/anton/wallpapers/purple_city.jpg"
+geisha="/home/anton/wallpapers/kung-fu_geisha.jpg"
+pipe="/home/anton/wallpapers/pipe_girl.jpg"
+if [ "$myfile" = "$seacity" ] || [ "$myfile" = "$purplecity" ] || [ "$myfile" = "$geisha" ] || [ "$myfile" = "$pipe" ]  
+then
+    feh --bg-scale --no-fehbg "$myfile"
+    echo ok
+else
+    feh --bg-max --no-fehbg "$myfile"
+    echo no
+
+
+fi
+
