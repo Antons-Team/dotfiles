@@ -1,0 +1,20 @@
+1626226339225	Sync.SyncScheduler	DEBUG	Next sync in 600000 ms. (why=schedule)
+1626226722661	Sync.RemoteTabs	INFO	Generating tab list with filter
+1626226722662	Sync.RemoteTabs	DEBUG	Processing client: {"id":"033907bae914795dfad9bec02bca3ef0","type":"client","name":"Firefox on OnePlus ONEPLUS A6010","clientType":"phone","lastModified":1626131429950,"tabs":[]}
+1626226722663	Sync.RemoteTabs	INFO	Final tab list has 1 clients with 4 tabs.
+1626226939226	Sync.Service	DEBUG	User-Agent: Firefox/78.11.0 (Linux x86_64) FxSync/1.80.0.20210531140902.desktop
+1626226939227	Sync.Service	INFO	Starting sync at 2021-07-14 11:42:19 in browser session ZUQImpKdXDFJ
+1626226939227	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1626226939246	Sync.Status	INFO	Resetting Status.
+1626226939246	Sync.Status	DEBUG	Status.service: success.status_ok => success.status_ok
+1626226939248	FirefoxAccounts	DEBUG	FxAccountsProfileClient: Requested profile
+1626226939249	FirefoxAccounts	DEBUG	getOAuthToken enter
+1626226939252	FirefoxAccounts	TRACE	getCachedToken returning cached token
+1626226939252	FirefoxAccounts	DEBUG	getOAuthToken returning a cached token
+1626226939254	Services.Common.RESTRequest	DEBUG	GET request to https://profile.accounts.firefox.com/v1/profile
+1626226979289	Services.Common.RESTRequest	DEBUG	GET https://profile.accounts.firefox.com/v1/profile failed: 2152398878 - NS_ERROR_UNKNOWN_HOST
+1626226979290	FirefoxAccounts	ERROR	Background refresh of profile failed: {"name":"FxAccountsProfileClientError","code":null,"errno":998,"error":"NETWORK_ERROR","message":"[Exception... \"NS_ERROR_UNKNOWN_HOST\"  nsresult: \"0x804b001e (NS_ERROR_UNKNOWN_HOST)\"  location: \"JS frame :: resource://services-common/rest.js :: onStopRequest :: line 488\"  data: no]"}
+1626226998298	Sync.Resource	WARN	GET request to https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/166986188/info/collections failed: [Exception... "Abort"  nsresult: "0x80004004 (NS_ERROR_ABORT)"  location: "<unknown>"  data: no] No traceback available
+1626226998299	Sync.ErrorHandler	ERROR	Sync encountered an error: [Exception... "Abort"  nsresult: "0x80004004 (NS_ERROR_ABORT)"  location: "<unknown>"  data: no] No traceback available
+1626226998299	Sync.SyncScheduler	DEBUG	Next sync in 600000 ms. (why=reschedule)
+1626226998301	Sync.Service	DEBUG	Exception calling anonymous function: [Exception... "Abort"  nsresult: "0x80004004 (NS_ERROR_ABORT)"  location: "<unknown>"  data: no] No traceback available
