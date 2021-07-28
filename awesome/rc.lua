@@ -14,19 +14,17 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
-local volume_control = require("volume-control")
+--local volume_control = require("volume-control")
 
 local lain = require("lain")
 local freedesktop = require("freedesktop")
-pomodoro = require("pomodoro")
+-- pomodoro = require("pomodoro")
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 local my_table      = awful.util.table or gears.table -- 4.{0,1} compatibility
 
--- Load Debian menu entries
-local debian = require("debian.menu")
 --local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 -- {{{ Error handling
@@ -38,7 +36,7 @@ if awesome.startup_errors then
                      text = awesome.startup_errors })
 end
 
-volumecfg = volume_control({})
+--volumecfg = volume_control({})
 
 -- Handle runtime errors after startup
 do
@@ -66,13 +64,13 @@ local themes = {
     "multicolor",      -- 3
 }
 -- choose your theme here
-local chosen_theme = themes[1]
+local chosen_theme = themes[2]
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 beautiful.init(theme_path)
 
 
 -- This is used later as the default terminal and editor to run.
-terminal = "tilix"
+terminal = "alacritty"
 editor = os.getenv("vim") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -184,7 +182,6 @@ else
     mymainmenu = awful.menu({
         items = {
                   menu_awesome,
-                  { "Debian", debian.menu.Debian_menu.Debian },
                   menu_terminal,
                 }
     })
@@ -306,11 +303,11 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            volumecfg.widget,
-            require("battery-widget") {},
+--            volumecfg.widget,
+--          require("battery-widget") {},
             wibox.widget.systray(),
             mytextclock,
-            pomodoro,
+--            pomodoro,
             s.mylayoutbox,
         },
     }
@@ -337,12 +334,12 @@ globalkeys = gears.table.join(
               {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
-    awful.key({}, "XF86AudioRaiseVolume", function() volumecfg:up() end,
-              {description = "volume up", group = "volume"}),
-    awful.key({}, "XF86AudioLowerVolume", function() volumecfg:down() end,
-              {description = "volume down", group = "volume"}),
-    awful.key({}, "XF86AudioMute",        function() volumecfg:toggle() end,
-              {description = "mute", group = "volume"}),
+--  awful.key({}, "XF86AudioRaiseVolume", function() volumecfg:up() end,
+--            {description = "volume up", group = "volume"}),
+--  awful.key({}, "XF86AudioLowerVolume", function() volumecfg:down() end,
+--            {description = "volume down", group = "volume"}),
+--  awful.key({}, "XF86AudioMute",        function() volumecfg:toggle() end,
+--            {description = "mute", group = "volume"}),
 
     awful.key({ modkey,           }, "j",
         function ()
@@ -364,9 +361,9 @@ globalkeys = gears.table.join(
               {description = "swap with next client by index", group = "client"}),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
               {description = "swap with previous client by index", group = "client"}),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
+    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_bydirection("left") end,
               {description = "focus the next screen", group = "screen"}),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
+    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_bydirection("right") end,
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
@@ -380,7 +377,7 @@ globalkeys = gears.table.join(
         {description = "go back", group = "client"}),
 
     -- Standard program
-    awful.key({ modkey,           }, "t", function () awful.spawn("termite") end,
+    awful.key({ modkey,           }, "t", function () awful.spawn("alacritty") end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
@@ -420,7 +417,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "Return",     function () awful.util.spawn("dmenu_run") end,
               {description = "run dmenu", group = "launcher"}),
 
-    awful.key({ modkey },            "i",     function () awful.util.spawn("firefox") end,
+    awful.key({ modkey },            "i",     function () awful.util.spawn("firefox-developer-edition") end,
               {description = "firefox", group = "applications"}),
     awful.key({ modkey },            "e",     function () awful.util.spawn("thunar") end,
               {description = "thunar", group = "applications"}),
@@ -458,7 +455,7 @@ clientkeys = gears.table.join(
               {description = "toggle floating", group = "client"}),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
-    awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
+    awful.key({ modkey, "1"           }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
     --awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
      --         {description = "toggle keep on top", group = "client"}),
