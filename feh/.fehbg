@@ -6,7 +6,8 @@ seacity="/home/anton/wallpapers/seacity.jpg"
 purplecity="/home/anton/wallpapers/purple_city.jpg"
 geisha="/home/anton/wallpapers/kung-fu_geisha.jpg"
 pipe="/home/anton/wallpapers/pipe_girl.jpg"
-if [ "$myfile" = "$seacity" ] || [ "$myfile" = "$purplecity" ] || [ "$myfile" = "$geisha" ] || [ "$myfile" = "$pipe" ]  
+cloud="/home/anton/wallpapers/cloud_heaven.jpg"
+if [ "$myfile" = "$seacity" ] || [ "$myfile" = "$purplecity" ] || [ "$myfile" = "$geisha" ] || [ "$myfile" = "$pipe" ] || [ "$myfile" = "$cloud" ]
 then
     feh --bg-scale --no-fehbg "$myfile"
     echo ok
