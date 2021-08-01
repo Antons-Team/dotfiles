@@ -1,8 +1,8 @@
 syntax on
-set number
 set t_Co=256
 set showmatch
 filetype plugin indent on
+set relativenumber
 
 let $RTP=split(&runtimepath, ',')[0]
 let $RC="HOME/.vim/vimrc"
@@ -17,6 +17,11 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> do <Plug>(coc-codeaction)
 
 " Remap leader key
 let mapleader = ","
@@ -46,7 +51,16 @@ set incsearch
 set ignorecase
 set smartcase
 
+" Nerd tree stuff
+nnoremap <C-n> :NERDTreeToggle<CR>
 
+" format on save TypeScipt
+autocmd BufWritePre *.tsx Neoformat
+autocmd BufWritePre *.ts Neoformat
+
+let g:lightline = {
+            \ 'colorscheme': 'wombat',
+            \ }
 
 
 
@@ -60,18 +74,18 @@ set hidden
 filetype indent on
 
 call plug#begin('~/.vim/plugged')
-	Plug 'vim-airline/vim-airline'
-	Plug 'arcticicestudio/nord-vim'
-    Plug 'davidhalter/jedi-vim' 
-    "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'wakatime/vim-wakatime'
-    Plug 'udalov/kotlin-vim'
+    Plug 'itchyny/lightline.vim'
+    Plug 'arcticicestudio/nord-vim'
+    Plug 'prettier/vim-prettier'
+    Plug 'sbdchd/neoformat'
+    Plug 'neoclide/coc.nvim'
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'scrooloose/nerdtree'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'peitalin/vim-jsx-typescript'
 call plug#end()
 
 colorscheme nord
-
 " Vim jedi settings
 let g:jedi#usages_command = "<leader>z"
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-
-
